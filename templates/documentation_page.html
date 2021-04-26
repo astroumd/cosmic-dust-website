@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Mark Van Selous">
+    <meta name="description" content="Query Form">
+    <title>Cosmic Dust Query Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
+    <link href="https://fonts.googleapis.com/css?family=EB Garamond" rel="stylesheet">
+    <link rel="stylesheet" href= {{ url_for('static', filename='my_styles.css') }}>
+    <style>
+	body {
+	    background-image: url({{ url_for('static', filename='img/background_1.png') }})
+	}
+    </style>
+    <script>
+    MathJax = {
+      tex: {
+	inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+	src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+</head>
+
+<body>
+    <nav class="navbar navbar-text bg-secondary">
+	<div class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" href={{ url_for('polarization_form') }} id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      Polarization
+	    </a>
+	    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	      <a class="dropdown-item" href= {{ url_for('polarization1_form') }}>One Material</a>
+	      <a class="dropdown-item" href= {{ url_for('polarization_form') }}>Two Materials</a>
+	    </div>		
+	</div>
+	<div class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" href={{ url_for('brightness_form') }} id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      Brightness
+	    </a>
+	    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	      <a class="dropdown-item" href= {{ url_for('brightness1_form') }}>One Material</a>
+	      <a class="dropdown-item" href= {{ url_for('brightness_form') }}>Two Materials</a>
+	    </div>		
+	</div>
+	<a class="nav-link" href= {{ url_for('size_form') }} >Size and Ratio</a>
+	<div class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" href={{ url_for('color_form') }} id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      Color
+	    </a>
+	    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	      <a class="dropdown-item" href= {{ url_for('color1_form') }}>One Material</a>
+	      <a class="dropdown-item" href= {{ url_for('color_form') }}>Two Materials</a>
+	    </div>		
+	</div>
+	<div class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" href={{ url_for('documentation') }} id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Documentation
+	    </a>
+	    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	      <a class="dropdown-item" href= {{ url_for('mat_docs') }}>Materials</a>
+	      <a class="dropdown-item" href= {{ url_for('size_docs') }}>Sizes</a>
+	      <a class="dropdown-item" href= {{ url_for('color_docs') }}>Color</a>
+	      <a class="dropdown-item" href= {{ url_for('index') }}>About Us</a>
+	    </div>		
+	</div>
+    </nav>
+	
+    <h1 style="color:white">Documentation Home</h1>
+
+    <div class="container-fluid">
+	<div class="row">
+	    <div class="col-2 sidebar border border-warning position-fixed" style="color:white; font-size:26px" id="sticky-sidebar">
+		 <p><a href= {{url_for('mat_docs')}} style="color:white">Materials</a></p>
+		 <p><a href= {{url_for('color_docs')}} style="color:white">Color</a></p>
+	    </div>
+	    <!-- offset-2 is needed because their is a bug with bootstrap and creating sticky sidebars. -->
+	    <div class="col-8 offset-2">
+		<div class="form-group row">
+		    <p style="color:white">The color is presented as a difference in magnitude between the brightness in red and blue filters: \[\text{color} = -2.5 \cdot \log_{10} \Big(\frac{\text{brightness_blue} }{ \text{brightness_red}} \Big) \] 
+		    Note that the solar color is not included here, so it should be subtracted from the observational data to fit the modeling results. Positive color is usually called red, and negative is called blue, neutral color is equal to zero. For a mixture of two materials, the resulting color is calculated as: \[\text{color} = -2.5 \cdot \log_{10}\Big(\frac{\text{brightness_blue_1}\cdot r +\text{brightness_blue_2}\cdot (1-r)} {\text{brightness_red_1}\cdot r+\text{brightness_red_2}\cdot (1-r)} \Big) \] where 1 and 2 corresponds to material 1 and material 2 and r is the fraction of the material in the mixture (i.e. 0.1 or 0.2, or 0.3....).</p>
+		</div>
+	    </div>
+	    <div class=col-2>
+	    </div>	
+	</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

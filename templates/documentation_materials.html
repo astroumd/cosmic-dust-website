@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Mark Van Selous">
+    <meta name="description" content="Query Form">
+    <title>Supported Materials</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
+    <link href="https://fonts.googleapis.com/css?family=EB Garamond" rel="stylesheet">
+    <link rel="stylesheet" href= {{ url_for('static', filename='my_styles.css') }}>
+    <style>
+	body {
+	    background-image: url({{ url_for('static', filename='img/background_1.png') }})
+	}
+    </style>
+    <script>
+    MathJax = {
+      tex: {
+	inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+	src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+</head>
+
+<body>
+    <nav class="navbar navbar-text bg-secondary">
+	<div class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" href={{ url_for('polarization_form') }} id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      Polarization
+	    </a>
+	    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	      <a class="dropdown-item" href= {{ url_for('polarization1_form') }}>One Material</a>
+	      <a class="dropdown-item" href= {{ url_for('polarization_form') }}>Two Materials</a>
+	    </div>		
+	</div>
+	<div class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" href={{ url_for('brightness_form') }} id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      Brightness
+	    </a>
+	    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	      <a class="dropdown-item" href= {{ url_for('brightness1_form') }}>One Material</a>
+	      <a class="dropdown-item" href= {{ url_for('brightness_form') }}>Two Materials</a>
+	    </div>		
+	</div>
+	<a class="nav-link" href= {{ url_for('size_form') }} >Size and Ratio</a>
+	<div class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" href={{ url_for('color_form') }} id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      Color
+	    </a>
+	    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	      <a class="dropdown-item" href= {{ url_for('color1_form') }}>One Material</a>
+	      <a class="dropdown-item" href= {{ url_for('color_form') }}>Two Materials</a>
+	    </div>		
+	</div>
+	<div class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle" href={{ url_for('documentation') }} id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Documentation
+	    </a>
+	    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	      <a class="dropdown-item" href= {{ url_for('mat_docs') }}>Materials</a>
+	      <a class="dropdown-item" href= {{ url_for('size_docs') }}>Sizes</a>
+	      <a class="dropdown-item" href= {{ url_for('color_docs') }}>Color</a>
+	      <a class="dropdown-item" href= {{ url_for('index') }}>About Us</a>
+	    </div>		
+	</div>
+    </nav>
+    <br>
+    <h1 style="text-align: center"><b style="color:white">Supported Materials</b></h1>
+
+    <div class="container-fluid">
+	<div class="row">
+	    <div class="col-2 sidebar position-fixed" style="color:white; font-size:26px" id="sticky-sidebar">
+	    </div>
+	    <!-- offset-2 is needed because their is a bug with bootstrap and creating sticky sidebars. -->
+	    <div class="col-8 offset-2">
+		<p style="color:white; font-size:14pt">The values used in our color filters comes from Table 4 in the paper <a href="https://arxiv.org/pdf/1905.02465.pdf" style="color:#99CCFF">Photometry, spectroscopy, and polarimetry of distant comet
+C/2014 A4 (SONEAR)</a> by Ivanoca et al.</p>
+		<p style="color:white; font-size:14pt">Each reference in the table below is a hyperlink to that paper.</p>
+		<div class="form-group row">
+		    <table class="table table-dark table-striped table-bordered table-hover table-sm table-responsive">
+			<thead>
+			    <tr>
+				<th>Material</th>
+				<th>$m$</th>
+				<th>$m$</th>
+				<th>Reference</th>
+			    </tr>
+			    <tr>
+				<th></th>
+				<th>Blue Filter</th>
+				<th>Red Filter</th>
+				<th></th>
+			    </tr>
+			</thead>
+			<tbody>
+			    <tr>
+				<td>Halley-like dust</td>
+				<td>$1.88 + i0.47$</td>
+				<td>$1.98 +i0.48$</td>
+				<td><a href="https://www.aanda.org/articles/aa/pdf/2003/31/aafe162.pdf" style="color:#99CCFF">Kirmura et al. (2003)</a></td>
+			    </tr>
+			    <tr>
+				<td>Amorphous silicate (forsterite)</td>
+				<td>$1.689 + i0.0031$</td>
+				<td>$1.677 + i0.0044$</td>
+				<td><a href="http://articles.adsabs.harvard.edu/pdf/1996ApJS..105..401S" style="color:#99CCFF">Scott and Duley (1996)</a></td>
+			    </tr>
+			    <tr>
+				<td>Water ice</td>
+				<td>$1.3157 + i1.54 \times 10^{-9}$</td>
+				<td>$1.308 + i1.43 \times 10^{-8}$</td>
+				<td><a href="https://www.osapublishing.org/DirectPDFAccess/258598A5-DAF5-96D0-BB030F3FE5C46E7E_27425/ao-23-8-1206.pdf?da=1&id=27425&seq=0&mobile=no" style="color:#99CCFF">Warren (1984)</a></td>
+			    </tr>
+			    <tr>
+				<td>Carbon dioxide ice</td>
+				<td>$1.42 + i7.04 \times 10^{-7}$</td>
+				<td>$1.41 + i1.05 \times 10^{-6}$</td>
+				<td><a href="https://www.osapublishing.org/ao/viewmedia.cfm?uri=ao-25-16-2650&seq=0" style="color:#99CCFF">Warren (1986)</a></td>
+				
+			    </tr>
+			    <tr>
+				<td>Iron-rich pyroxene</td>
+				<td>$1.702 + i0.0596$</td>
+				<td>$1.675 + i0.0212$</td>
+				<td><a href="http://articles.adsabs.harvard.edu/pdf/1995A%26AS..112..143H" style="color:#99CCFF">Dorschner et al. (1995)</a></td>
+			    </tr>
+			    <tr>
+				<td>Olivine</td>
+				<td>$1.777 + i0.126$</td>
+				<td>$1.743 + i0.066$</td>
+				<td><a href="http://articles.adsabs.harvard.edu/pdf/1995A%26AS..112..143H" style="color:#99CCFF">Dorschner et al. (1995)</a></td>
+			    </tr>
+			    <tr>
+				<td>Amorphous carbon</td>
+				<td>$1.95 + i0.786$</td>
+				<td>$2.14 + i0.805$</td>
+				<td><a href="http://articles.adsabs.harvard.edu/pdf/1991ApJ...377..526R" style="color:#99CCFF">Rouleau and Martin (1991)</a></td>
+			    </tr>
+			    <tr>
+				<td>Pyrrhotite (FeS)</td>
+				<td>$1.45 + i1.53$</td>
+				<td>$1.70 + i1.86$</td>
+				<td><a href="https://www.sciencedirect.com/science/article/abs/pii/0019103577901750?via%3Dihub" style="color:#99CCFF">Egan and Hilgeman (1977)</a></td>
+			    </tr>
+			    <tr>
+				<td>Iron-rich olivine (fayalite)</td>
+				<td>$1.85 + i0.0015$</td>
+				<td>$1.85 + i0.00077$</td>
+				<td><a href="https://www.aanda.org/articles/aa/pdf/2001/40/aa1095.pdf" style="color:#99CCFF">Fabian et al (2001)</a></td>
+			    </tr>
+			    <tr>
+				<td>Cosmic organic refractory</td>
+				<td>$1.9146 + i0.3173$</td>
+				<td>$1.98 +i0.2677$</td>
+				<td><a href="http://articles.adsabs.harvard.edu/pdf/1997A%26A...323..566L" style="color:#99CCFF">Li and Greenberg (1997)</a></td>
+			    </tr>
+			    <tr>
+				<td>Tholin ice</td>
+				<td>$1.56 + i0.0025$</td>
+				<td>$1.540 + i0.0012$</td>
+				<td><a href="https://www.sciencedirect.com/science/article/abs/pii/S0019103583710717?via%3Dihub" style="color:#99CCFF">Khare et al. (2003)</a></td>
+			    </tr>
+			    <tr>
+				<td>Titan tholins</td>
+				<td>$1.58 + i0.0058$</td>
+				<td>$1.557 +i0.009$</td>
+				<td><a href="https://www.sciencedirect.com/science/article/abs/pii/S0019103501967831?via%3Dihub" style="color:#99CCFF">Ramirez et al. (2002)</a></td>
+			    </tr>
+			</tbody>
+		    </table>
+		</div>
+	    </div>
+	    <div class=col-2>
+	    </div>	
+	</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

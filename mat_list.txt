@@ -1,0 +1,12 @@
+Pyroxene
+Halley_porous
+Ice_non-porous
+Carbon_porosity_0.45
+Silicate
+Ice_porosity_0.55
+Fayalite
+Titan_Tholin
+Halley_non-porous
+CO2_ice
+Troilite_porosity_0.75
+Organic
